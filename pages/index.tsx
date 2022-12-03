@@ -2,33 +2,56 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import Authorization from './Components/Authorization'
+import InputMessage from './Components/InputMessage'
 import {useState, useEffect} from 'react'
 
 export default function Home() {
 
   const [userName, setUserName] = useState('')
+  const [messageText, setMessageText] = useState('')
   const [isUserNameSubmitted, setIsUserNameSubmitted] = useState(false);
 
   useEffect(()=>{
     if (sessionStorage.getItem("userName")){
       setIsUserNameSubmitted(true);
+      let userName = sessionStorage.getItem("userName")
+      if (typeof userName === "string"){
+        setUserName(userName)
+      }
     }
   }, []);
-  function inputHandler(value: string){
+  function inputNameHandler(value: string){
     setUserName(value);
   }
-  function submitHandler(e: React.FormEvent<HTMLFormElement>){
+  function submitNameHandler(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
     if (userName!==''){
       sessionStorage.setItem("userName", userName);
       setIsUserNameSubmitted(true);
     }
   }
+  function inputMessageHandler(value: string){
+    setMessageText(value);
+  }
+  function submitMessageHandler(e: React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    localStorage.setItem('newMessage', messageText);
+  }
   const firstRender= () =>{
     if (!isUserNameSubmitted){
-      return <Authorization submitHandler={(e: React.FormEvent<HTMLFormElement>)=>submitHandler(e)} inputHandler={(value: string)=>inputHandler(value)} value={userName}/>
+      return (
+        <div className="row mt-3">
+          <div className="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
+            <Authorization submitNameHandler={(e: React.FormEvent<HTMLFormElement>)=>submitNameHandler(e)} inputNameHandler={(value: string)=>inputNameHandler(value)} value={userName}/>
+          </div>
+        </div>
+      )
     }
-    return <div>Hellao</div>
+    return (
+      <div className="d-flex flex-column-reverse" style={{height: '80vh'}}>
+        <InputMessage submitMessageHandler={(e: React.FormEvent<HTMLFormElement>)=>submitMessageHandler(e)} inputMessageHandler={(value: string)=>inputMessageHandler(value)} value={messageText}/>
+      </div>
+    )
   }
   
   return (
@@ -40,15 +63,11 @@ export default function Home() {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossOrigin="anonymous" />
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossOrigin="anonymous"></script>
       </Head>
-      <div className='container text-center'>
+      <div className='container'>
         <div className='row justify-content-center mt-3'>
-          <div className="col-6 col-xs-12 h3">Lonely chat</div>  
+          <div className="col-6 col-xs-12 h3 text-center">Lonely chat</div>  
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
-            {firstRender()}
-        </div>
+        {firstRender()}
       </div>
     </div>
   )
