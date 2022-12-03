@@ -8,7 +8,8 @@ import {useState, useEffect} from 'react'
 export default function Home() {
 
   const [userName, setUserName] = useState('')
-  const [messageText, setMessageText] = useState('')
+  const [messageText, setMessageText] = useState<string>('')
+  const [messages, setMessages] = useState<string[]>([])
   const [isUserNameSubmitted, setIsUserNameSubmitted] = useState(false);
 
   useEffect(()=>{
@@ -31,11 +32,12 @@ export default function Home() {
     }
   }
   function inputMessageHandler(value: string){
-    setMessageText(value);
+    setMessageText(value)
   }
   function submitMessageHandler(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
-    localStorage.setItem('newMessage', messageText);
+    setMessages(current => [...current, messageText])
+    localStorage.setItem('messages', JSON.stringify(messages));
   }
   const firstRender= () =>{
     if (!isUserNameSubmitted){
