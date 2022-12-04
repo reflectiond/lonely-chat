@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
-import Authorization from './Components/Authorization'
-import InputMessage from './Components/InputMessage'
 import {useState, useEffect} from 'react'
+import Input from './Components/Input'
 
-export default function Home() {
+export default function Chat() {
 
   const [userName, setUserName] = useState('')
   const [messageText, setMessageText] = useState<string>('')
@@ -44,14 +43,14 @@ export default function Home() {
       return (
         <div className="row mt-3">
           <div className="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
-            <Authorization submitNameHandler={(e: React.FormEvent<HTMLFormElement>)=>submitNameHandler(e)} inputNameHandler={(value: string)=>inputNameHandler(value)} value={userName}/>
+          <Input submitHandler={(e: React.FormEvent<HTMLFormElement>)=>submitNameHandler(e)} inputHandler={(value: string)=>inputNameHandler(value)} value={userName} target={'authorization'} />
           </div>
         </div>
       )
     }
     return (
       <div className="d-flex flex-column-reverse" style={{height: '80vh'}}>
-        <InputMessage submitMessageHandler={(e: React.FormEvent<HTMLFormElement>)=>submitMessageHandler(e)} inputMessageHandler={(value: string)=>inputMessageHandler(value)} value={messageText}/>
+        <Input submitHandler={(e: React.FormEvent<HTMLFormElement>)=>submitMessageHandler(e)} inputHandler={(value: string)=>inputMessageHandler(value)} value={messageText} target={'message'} />
       </div>
     )
   }
