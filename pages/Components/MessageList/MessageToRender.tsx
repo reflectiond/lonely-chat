@@ -8,9 +8,9 @@ const MessageToRender = ({sendler, text, isByCurrentUser}: {sendler: string,text
   //Need something to avoid horizontal overflow when one-worded, 100500 char shit typed while on small devices
   return (
     <div className={classes}>
-      <div style={{backgroundColor: bgColor, borderRadius: '20px', width: 'fit-content'}}>
+      <div style={{backgroundColor: bgColor, borderRadius: '20px', maxWidth: '80vw'}}>
         <div className='px-3 pt-2 h5' style={{color: textColor}}>{sendler}</div>
-        <div className='px-3 pb-2' style={{color: textColor,height: 'auto'}}>{text}</div>
+        <div className='px-3 pb-2' style={{color: textColor,height: 'auto',overflow: 'hidden',textOverflow: 'ellipsis'}}>{text}</div>
       </div>
     </div>
   )
