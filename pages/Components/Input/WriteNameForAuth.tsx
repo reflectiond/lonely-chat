@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NameForAuth = ({inputHandler, value}: {inputHandler: Function, value: string}) => {
+const WriteNameForAuth = ({inputHandler, value}: {inputHandler: Function, value: string}) => {
   return (
     <>
         <label className="input-group-text">Enter your</label>
@@ -19,4 +19,4 @@ const NameForAuth = ({inputHandler, value}: {inputHandler: Function, value: stri
   )
 }
 
-export default NameForAuth
+export default WriteNameForAuth

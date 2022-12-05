@@ -16,5 +16,16 @@ const useAutosizeTextArea = (
       }
     }, [textAreaRef, value]);
   };
+const useScrollToBottom = (messageListRef: HTMLDivElement | null) => {
+  useEffect(() => {
+    if (messageListRef) {
+      let lastMessage = messageListRef.lastElementChild
+      if(lastMessage){
+        lastMessage.scrollIntoView({block: "start", behavior: "smooth"});
+      }
+    }
+  });
+};
 
-export default useAutosizeTextArea;
+export {useAutosizeTextArea, useScrollToBottom}
+

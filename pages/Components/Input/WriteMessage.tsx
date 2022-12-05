@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useRef, useLayoutEffect} from 'react'
-import useAutosizeTextArea from '../Util'
+import React, {useRef} from 'react'
+import {useAutosizeTextArea} from '../../Util'
 
-const Message = ({inputHandler, value}: {inputHandler: Function, value: string}) => {
+const WriteMessage = ({enterSubmitHandler, inputHandler, value}: {enterSubmitHandler: Function, inputHandler: Function, value: string}) => {
 
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
     useAutosizeTextArea(textAreaRef.current, value);
@@ -16,6 +16,7 @@ const Message = ({inputHandler, value}: {inputHandler: Function, value: string})
             value={value}
             rows={1}
             ref={textAreaRef}
+            onKeyDown={(e)=> {e.key==='Enter' ? enterSubmitHandler(e) : false}}
             style={{width:'100%', maxHeight:'85px', resize: 'none'}}
             />
         <button type="submit" className="btn btn-secondary ">
@@ -25,4 +26,4 @@ const Message = ({inputHandler, value}: {inputHandler: Function, value: string})
   )
 }
 
-export default Message
+export default WriteMessage

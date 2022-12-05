@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef, useLayoutEffect} from 'react'
-import Message from './Message';
-import NameForAuth from './NameForAuth';
+import WriteMessage from './WriteMessage';
+import WriteNameForAuth from './WriteNameForAuth';
 
 
 const Input = ({submitHandler, inputHandler, value, target}: {submitHandler: Function, inputHandler: Function, value: string, target: string}) => {
@@ -10,10 +10,10 @@ const Input = ({submitHandler, inputHandler, value, target}: {submitHandler: Fun
             {
                 (()=>{
                     if(target === 'message') {
-                        return <Message inputHandler={inputHandler} value={value} />
+                        return <WriteMessage inputHandler={inputHandler} value={value} enterSubmitHandler={submitHandler}/>
                     }
                     if(target === 'authorization'){
-                        return <NameForAuth inputHandler={inputHandler} value={value} />
+                        return <WriteNameForAuth inputHandler={inputHandler} value={value} />
                     }
                 })()
             }  
