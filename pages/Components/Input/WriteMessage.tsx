@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {useAutosizeTextArea} from '../../Util'
+import {useAutosizeTextArea} from '../../../src/Util'
 
 const WriteMessage = ({enterSubmitHandler, inputHandler, value}: {enterSubmitHandler: Function, inputHandler: Function, value: string}) => {
 

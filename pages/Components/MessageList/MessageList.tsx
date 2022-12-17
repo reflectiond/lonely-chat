@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import MessageToRender from './MessageToRender'
 import {Message} from '../../models'
-import {useScrollToBottom} from '../../Util'
+import {useScrollToBottom} from '../../../src/Util'
 
 
 const MessageList = ({messages, userName}: {messages: Message[], userName: string} ) => {
