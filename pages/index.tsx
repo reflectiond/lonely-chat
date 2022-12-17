@@ -92,6 +92,7 @@ export default function Chat() {
                     target={"authorization"}
                   />
                 </div>
+                <div className="my-2 col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">To add another user <a href='' target="_blank" rel="noreferrer">open this app in another tab</a></div>
               </div>
             );
           }
