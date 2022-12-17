@@ -2,7 +2,7 @@ import Head from 'next/head'
 import {useState, useEffect} from 'react'
 import Input from './Components/Input/Input'
 import MessageList from './Components/MessageList/MessageList'
-import {Message} from './models'
+import {Message} from '../src/models'
 
 
 export default function Chat() {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import MessageToRender from './MessageToRender'
-import {Message} from '../../models'
+import {Message} from '../../../src/models'
 import {useScrollToBottom} from '../../../src/Util'
 
 
