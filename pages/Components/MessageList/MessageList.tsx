@@ -12,7 +12,7 @@ const MessageList = ({messages, userName}: {messages: Message[], userName: strin
   return (
     <div className="py-4 d-flex flex-column" ref={messageListRef} style={{maxHeight: '75vh', overflow: 'auto'}}>
       {
-        messages.map((message) =>{
+        messages?.map((message) =>{
           return(
             <MessageToRender key={message.id} sendler={message.user} text={message.text} isByCurrentUser={message.user===userName ? true : false} />
           )
